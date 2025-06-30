@@ -17,7 +17,7 @@ async fn multiply(path:Path<(i64,i64)>)->impl Responder{
     engine.register_fn("num1",move||num1);
     engine.register_fn("num2",move||num2);
 
-    let res=engine.eval_file::<i64>("src/multiply.rhai".into()).unwrap();
+    let res=engine.eval_file::<i64>("rhai/multiply.rhai".into()).unwrap();
 
     format!("{res}")
 
@@ -32,7 +32,7 @@ async fn add(path:Path<(i64,i64)>)->impl Responder{
     engine.register_fn("num1",move||num1);
     engine.register_fn("num2",move||num2);
 
-    let res=engine.eval_file::<i64>("src/add.rhai".into()).unwrap();
+    let res=engine.eval_file::<i64>("rhai/add.rhai".into()).unwrap();
 
     format!("{res}")
 
@@ -47,7 +47,7 @@ async fn subtract(path:Path<(i64,i64)>)->impl Responder{
     engine.register_fn("num1",move||num1);
     engine.register_fn("num2",move||num2);
 
-    let res=engine.eval_file::<i64>("src/subtract.rhai".into()).unwrap();
+    let res=engine.eval_file::<i64>("rhai/subtract.rhai".into()).unwrap();
 
     format!("{res}")
 
@@ -62,7 +62,7 @@ async fn divide(path:Path<(i64,i64)>)->impl Responder{
     engine.register_fn("num1",move||num1);
     engine.register_fn("num2",move||num2);
 
-    let res=engine.eval_file::<i64>("src/divide.rhai".into()).unwrap();
+    let res=engine.eval_file::<i64>("rhai/divide.rhai".into()).unwrap();
 
     format!("{res}")
 }
@@ -73,7 +73,7 @@ async fn factorial(path: Path<i64>) -> impl Responder {
     let mut engine = Engine::new();
     engine.register_fn("num", move || num);
 
-    let res = engine.eval_file::<i64>("src/factorial.rhai".into()).unwrap();
+    let res = engine.eval_file::<i64>("rhai/factorial.rhai".into()).unwrap();
     format!("{res}")
 }
 
@@ -85,7 +85,7 @@ async fn lcm(path: Path<(i64, i64)>) -> impl Responder {
     engine.register_fn("num1", move || num1);
     engine.register_fn("num2", move || num2);
 
-    let res = engine.eval_file::<i64>("src/lcm.rhai".into()).unwrap();
+    let res = engine.eval_file::<i64>("rhai/lcm.rhai".into()).unwrap();
     format!("{res}")
 }
 
@@ -97,7 +97,7 @@ async fn hcf(path: Path<(i64, i64)>) -> impl Responder {
     engine.register_fn("num1", move || num1);
     engine.register_fn("num2", move || num2);
 
-    let res = engine.eval_file::<i64>("src/hcf.rhai".into()).unwrap();
+    let res = engine.eval_file::<i64>("rhai/hcf.rhai".into()).unwrap();
     format!("{res}")
 }
 
@@ -109,7 +109,7 @@ async fn power(path: Path<(i64, i64)>) -> impl Responder {
     engine.register_fn("base", move || base);
     engine.register_fn("exponent", move || exponent);
 
-    let res = engine.eval_file::<i64>("src/power.rhai".into()).unwrap();
+    let res = engine.eval_file::<i64>("rhai/power.rhai".into()).unwrap();
     format!("{res}")
 }
 
@@ -126,7 +126,7 @@ async fn main()->std::io::Result<()>{
         .service(power)
         .service(lcm)
         .service(hcf)
-        
+
       })
       .bind(("127.0.0.1",8081))
       .unwrap()
